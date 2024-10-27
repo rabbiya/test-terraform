@@ -1,0 +1,40 @@
+name: Terraform CI/CD
+
+on:
+  push:
+    branches:
+      - develop  # Adjust as necessary for your workflow
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.3.0  # Use your desired Terraform version
+
+      - name: Terraform Init
+        run: |
+          cd terraform/environment/development
+          terraform init
+
+      - name: Terraform Plan
+        run: |
+          cd terraform/environment/development
+          terraform plan -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
+                         -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+                         -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+                         -var="aws_region=${{ secrets.AWS_REGION }}"
+
+      - name: Terraform Apply
+        run: |
+          cd terraform/environment/development
+          terraform apply -auto-approve -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
+                           -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+                           -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+                           -var="aws_region=${{ secrets.AWS_REGION }}"
