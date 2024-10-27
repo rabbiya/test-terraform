@@ -31,18 +31,18 @@ jobs:
                          -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
                          -var="aws_region=${{ secrets.AWS_REGION }}"
 
-      # - name: Terraform Apply
-      #   run: |
-      #     cd terraform/environment/development
-      #     terraform apply -auto-approve -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
-      #                      -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
-      #                      -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
-      #                      -var="aws_region=${{ secrets.AWS_REGION }}"
-
-      - name: Terraform Destroy
+      - name: Terraform Apply
         run: |
           cd terraform/environment/development
-          terraform destroy -auto-approve -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
-                             -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
-                             -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
-                             -var="aws_region=${{ secrets.AWS_REGION }}"
+          terraform apply -auto-approve -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
+                           -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+                           -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+                           -var="aws_region=${{ secrets.AWS_REGION }}"
+
+      # - name: Terraform Destroy
+      #   run: |
+      #     cd terraform/environment/development
+      #     terraform destroy -auto-approve -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
+      #                        -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+      #                        -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+      #                        -var="aws_region=${{ secrets.AWS_REGION }}"
