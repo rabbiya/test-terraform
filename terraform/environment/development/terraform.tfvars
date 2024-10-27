@@ -7,4 +7,4 @@ ssh_public_key  = ""  # Your public SSH key
 aws_access_key  = ""
 aws_secret_key  = ""
 aws_region      = ""
-sg_name         = "mawsim"
+sg_name         = "mawsim_security_group"
