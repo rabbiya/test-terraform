@@ -3,6 +3,5 @@ output "security_group_id" {
 }
 
 output "instance_eip" {
-  value = module.ec2.eip  # Public IP from the EC2 module
+  value = module.ec2.mawsim_dev_eip  # Use the correct output name from the module
 }
-
