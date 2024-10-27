@@ -1,5 +1,7 @@
 provider "aws" {
-  region = "me-central-1"  # Change this to your desired AWS region
+  region     = var.aws_region  # Change this to your desired AWS region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 }
 
 module "security_group" {
