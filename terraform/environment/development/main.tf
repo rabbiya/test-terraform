@@ -3,17 +3,17 @@ provider "aws" {
 }
 
 module "security_group" {
-  source = "../modules/security_group"  # Updated path to the security_group module
+  source = "../../modules/security_group"  # Updated path to the security_group module
 }
 
 module "key_pair" {
-  source        = "../modules/key_pair"  # Updated path to the key_pair module
+  source        = "../../modules/key_pair"  # Updated path to the key_pair module
   key_name      = var.key_name
   ssh_public_key = var.ssh_public_key
 }
 
 module "ec2" {
-  source          = "../modules/ec2"      # Updated path to the ec2 module
+  source          = "../../modules/ec2"      # Updated path to the ec2 module
   ami_id         = var.ami_id
   instance_type  = var.instance_type
   instance_name  = var.instance_name
