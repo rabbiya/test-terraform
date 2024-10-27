@@ -3,7 +3,7 @@ name: Terraform CI/CD
 on:
   push:
     branches:
-      - develop  # Adjust as necessary for your workflow
+      - main  # Adjust as necessary for your workflow
 
 jobs:
   terraform:
