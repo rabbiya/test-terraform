@@ -42,4 +42,7 @@ variable "aws_region" {
   description = "AWS Region"
   type        = string
 }
-
+variable "sg_name" {
+  description = "Name of the security group"
+  type        = string
+}
