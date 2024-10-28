@@ -33,7 +33,7 @@ jobs:
           terraform init -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
                          -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
                          -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
-                         -var="aws_region=${{ secrets.AWS_REGION }}"  # AWS_REGION ko hardcode karne ke bajaaye secret use karein
+                         -var="aws_region=${{ secrets.AWS_REGION_A }}"  # AWS_REGION ko hardcode karne ke bajaaye secret use karein
 
       # Terraform Plan Step
       - name: Terraform Plan
