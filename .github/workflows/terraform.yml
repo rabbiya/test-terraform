@@ -36,16 +36,16 @@ jobs:
       - name: Terraform Plan
         run: |
           cd terraform/environment/development
-          terraform plan 
-                         -var="aws_region=${{ secrets.AWS_REGION }}" \
-                         -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
-                         -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+          terraform plan \
+            -var="aws_region=${{ secrets.AWS_REGION }}" \
+            -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+            -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
 
       # Terraform Apply Step
       - name: Terraform Apply
         run: |
           cd terraform/environment/development
-          terraform apply -auto-approve 
-                          -var="aws_region=${{ secrets.AWS_REGION }}" \
-                          -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
-                          -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+          terraform apply -auto-approve \
+            -var="aws_region=${{ secrets.AWS_REGION }}" \
+            -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+            -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
