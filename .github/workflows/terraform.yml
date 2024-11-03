@@ -31,3 +31,7 @@ jobs:
         run: |
           cd terraform/environment/development
           terraform init
+      - name: Terraform Plan
+        run: |
+          cd terraform/environment/development
+          terraform plan -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}"
