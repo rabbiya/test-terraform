@@ -1,5 +1,5 @@
 resource "aws_security_group" "mawsim_sg" {
-  name        = "mawsim_sg"
+  name        = var.sg_name
   description = "Allow SSH and HTTP access"
 
   ingress {
