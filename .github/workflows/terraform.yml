@@ -30,7 +30,10 @@ jobs:
       - name: Terraform Init with AWS Region Debugging
         run: |
           cd terraform/environment/development
-          terraform init 
+          terraform init -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
+                         -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+                         -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+                         -var="aws_region=${{ secrets.AWS_REGION }}"
 
       # Terraform Plan Step
       - name: Terraform Plan
