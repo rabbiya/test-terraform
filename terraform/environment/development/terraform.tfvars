@@ -6,5 +6,5 @@ key_name        = "mawsim_key"               # Name of the key pair to use for S
 ssh_public_key  = ""  # Your public SSH key
 aws_access_key  = ""
 aws_secret_key  = ""
-aws_region      = ""
+aws_region      = "me-central-1"
 sg_name         = "mawsim_sg"
