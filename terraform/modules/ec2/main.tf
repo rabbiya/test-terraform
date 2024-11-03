@@ -16,5 +16,5 @@ resource "aws_instance" "mawsim_dev_server" {
 # Existing Elastic IP ko instance ke saath associate karne ka resource
 resource "aws_eip_association" "mawsim_eip_association" {
   instance_id   = aws_instance.mawsim_dev_server.id
-  allocation_id = "40.172.98.117"  # Yahan apne EIP ka actual allocation ID daalain
+  allocation_id = "eipalloc-018b5cb889349ff32"  # Yahan apne EIP ka actual allocation ID daalain
 }
