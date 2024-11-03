@@ -1,12 +1,6 @@
 provider "aws" {
-  region = "me-central-1"
-  endpoints {
-    ec2       = "https://ec2.me-central-1.amazonaws.com"
-    s3        = "https://s3.me-central-1.amazonaws.com"
-    dynamodb  = "https://dynamodb.me-central-1.amazonaws.com"
-    
+  region = "us-east-1"
   }
-}
 
 
 module "security_group" {
