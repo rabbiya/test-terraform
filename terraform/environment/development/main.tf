@@ -19,7 +19,7 @@ provider "aws" {
 
 module "security_group" {
   source = "../../modules/security_group" # Updated path to the security_group module
-  sg_name = mawsim_sg
+  sg_name = var.sg_name
 }
 
 #module "key_pair" {
