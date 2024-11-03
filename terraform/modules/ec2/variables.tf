@@ -13,16 +13,6 @@ variable "instance_name" {
   type        = string
 }
 
-variable "eip_name" {
-  description = "Name for the Elastic IP"
-  type        = string
-}
-
-variable "key_name" {
-  description = "mawsim"
-  type        = string
-}
-
 variable "sg_id" {
   description = "The Security Group ID to attach to the EC2 instance"
   type        = string
