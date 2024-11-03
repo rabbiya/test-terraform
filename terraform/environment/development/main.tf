@@ -1,7 +1,6 @@
 provider "aws" {
-  region     = "me-central-1"  # Change this to your desired AWS region
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
+  region = "us-east-1"  # Assuming you want to deploy resources in the us-east-1 region
+  alias =  "us-east-1"
 }
 
 module "security_group" {
