@@ -1,7 +1,7 @@
 resource "aws_instance" "mawsim_dev_server" {
   ami                    = var.ami_id
   instance_type         = var.instance_type
-  key_name              = var.key_name
+  key_name              = "test-ra"  # Yahan apne existing key pair ka naam daalain
   vpc_security_group_ids = [var.sg_id]  
   tags = {
     Name = var.instance_name
@@ -13,9 +13,8 @@ resource "aws_instance" "mawsim_dev_server" {
   }
 }
 
-resource "aws_eip" "mawsim_dev_eip" {
-  instance = aws_instance.mawsim_dev_server.id
-  tags = {
-    Name = var.eip_name
-  }
+# Existing Elastic IP ko instance ke saath associate karne ka resource
+resource "aws_eip_association" "mawsim_eip_association" {
+  instance_id   = aws_instance.mawsim_dev_server.id
+  allocation_id = "40.172.98.117"  # Yahan apne EIP ka actual allocation ID daalain
 }
