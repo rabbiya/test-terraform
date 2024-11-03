@@ -3,7 +3,7 @@ name: Terraform CI/CD
 on:
   push:
     branches:
-      - main  # Apni branch ka naam adjust karein agar zaroorat ho
+      - main  # Adjust branch name if necessary
 
 jobs:
   terraform:
@@ -16,39 +16,18 @@ jobs:
       - name: Set Up Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 1.3.0  # Apni desired Terraform version yahan set karein
+          terraform_version: 1.3.0  # Set your desired Terraform version here
 
-      # Debug Step: AWS Region aur Keys ko Confirm karein (Secrets ko file mein likhein bina masking ke)
-      - name: Debug AWS Region and Keys
+      # Set AWS credentials as environment variables
+      - name: Configure AWS Credentials
         run: |
-          echo "AWS_REGION=${{ secrets.AWS_REGION }}" > temp_env_file
-          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> temp_env_file
-          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> temp_env_file
-          cat temp_env_file  # Ye secrets ko bina masking ke display karega debugging ke liye (use carefully)
+          echo "Configuring AWS credentials"
+          echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
 
-      # Terraform Init Step with AWS Region Debugging
-      - name: Terraform Init with AWS Region Debugging
-        run: |
-          cd terraform/environment/development
-          terraform init -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
-                         -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
-                         -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
-                         -var="aws_region=${{ secrets.AWS_REGION }}"
-
-      # Terraform Plan Step
-      - name: Terraform Plan
+      # Terraform Init Step
+      - name: Terraform Init
         run: |
           cd terraform/environment/development
-          terraform plan -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
-                         -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
-                         -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
-                         -var="aws_region=${{ secrets.AWS_REGION }}"
-
-      # Terraform Destroy Step
-      - name: Terraform Destroy
-        run: |
-          cd terraform/environment/development
-          terraform destroy -auto-approve -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" \
-                             -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
-                             -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
-                             -var="aws_region=${{ secrets.AWS_REGION }}"
+          terraform init
