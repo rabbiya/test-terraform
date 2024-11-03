@@ -17,10 +17,10 @@ provider "aws" {
   #}
 
 
-#module "security_group" {
- # source = "../../modules/security_group" # Updated path to the security_group module
-  #sg_name = var.sg_name
-#}
+module "security_group" {
+  source = "../../modules/security_group" # Updated path to the security_group module
+  sg_name = var.sg_name
+}
 
 #module "key_pair" {
  # source        = "../../modules/key_pair"  # Updated path to the key_pair module
@@ -35,5 +35,5 @@ module "ec2" {
   instance_name  = var.instance_name
  # eip_name       = var.eip_name
   #key_name       = module.key_pair.key_name  # Get the key name from the key pair module
-  #sg_id          = module.security_group.sg_id  # Get the security group ID from the security group module
+  sg_id          = module.security_group.sg_id  # Get the security group ID from the security group module
 }
