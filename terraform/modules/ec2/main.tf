@@ -1,3 +1,5 @@
+# main.tf in your EC2 module
+
 resource "aws_instance" "mawsim_dev_server" {
   ami                    = var.ami_id
   instance_type         = var.instance_type
