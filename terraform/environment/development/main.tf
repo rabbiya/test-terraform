@@ -1,7 +1,13 @@
 provider "aws" {
-  region = "us-east-1"  # Assuming you want to deploy resources in the us-east-1 region
-  alias =  "us-east-1"
+  region = "me-central-1"
+  endpoints {
+    ec2       = "https://ec2.me-central-1.amazonaws.com"
+    s3        = "https://s3.me-central-1.amazonaws.com"
+    dynamodb  = "https://dynamodb.me-central-1.amazonaws.com"
+    
+  }
 }
+
 
 module "security_group" {
   source = "../../modules/security_group" # Updated path to the security_group module
