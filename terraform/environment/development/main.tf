@@ -1,6 +1,20 @@
-provider "aws" {
-  region = "us-east-1"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"  # Change this to the latest version, which is currently 5.x
+    }
   }
+}
+
+provider "aws" {
+  region = "us-east-1"  # You can keep this or change to me-south-1 if there are issues
+}
+
+
+#provider "aws" {
+ # region = "us-east-1"
+  #}
 
 
 module "security_group" {
