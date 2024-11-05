@@ -13,11 +13,6 @@ variable "instance_name" {
   type        = string
 }
 
-variable "key_name" {
-  description = "Name of the key pair to use for SSH access"
-  type        = string
-}
-
 variable "aws_access_key" {
   description = "AWS Access Key"
   type        = string
