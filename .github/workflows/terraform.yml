@@ -54,7 +54,7 @@ jobs:
             -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
       
       - name: Terraform Destroy
-        if: github.event_name == 'workflow_dispatch'  # Runs only when manually triggered
+        #if: github.event_name == 'workflow_dispatch'  # Runs only when manually triggered
         run: |
           cd terraform/environment/development
           terraform destroy -auto-approve -lock=false \
