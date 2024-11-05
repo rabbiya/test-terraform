@@ -44,3 +44,8 @@ module "s3" {
   source      = "../../modules/s3"          # Updated path to the S3 module
   bucket_name = var.bucket_name              # Pass the bucket name variable
 }
+
+module "ecr" {
+  source      = "../../modules/ecr"          
+                
+}
