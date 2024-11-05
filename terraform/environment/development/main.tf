@@ -38,3 +38,9 @@ module "ec2" {
   #key_name       = module.key_pair.key_name  # Get the key name from the key pair module
   sg_id          = module.security_group.sg_id  # Get the security group ID from the security group module
 }
+
+# Add your S3 module here
+module "s3" {
+  source      = "../../modules/s3"          # Updated path to the S3 module
+  bucket_name = var.bucket_name              # Pass the bucket name variable
+}
